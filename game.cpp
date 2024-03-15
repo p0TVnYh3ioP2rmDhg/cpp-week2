@@ -7,33 +7,29 @@
 
 
 // Prototypes
-int enterAnswer();
+void generateAnswer(int* a);
+void printAnswer(int* a);
 int enterGuess();
 void gameLoop();
-int strike(int a, int g);
-int ball(int a, int g);
-void showResult(int a, int g);
+int strike(int* a, int g);
+int ball(int* a, int g);
+void showResult(int* a, int g);
 void congratulation();
 
 
 
 // Strike를 기록하는 함수
-int strike(int a, int g) {                          // a : answer(정답), g : guess(추측하는 값)
-    int a_num[3], g_num[3];                         // answer, guess의 세 자리 숫자를 분해하여 각각의 자릿수에 해당하는 값을 따로 보관
+int strike(int* a, int g) {                         // a : answer(정답) 인자를 배열 포인터로 입력받아야 함, g : guess(추측하는 값)
+    int g_num[3];                                   // guess의 세 자리 숫자를 분해하여 각각의 자릿수에 해당하는 값을 따로 보관
     int count = 0;                                  // strike 개수를 의미하는 변수
 
-    a_num[0] = a / 100;                             // 배열의 0 번째에는 백의 자릿수를 담는다
-    g_num[0] = g / 100;
-
-    a_num[1] = ((a % 100) - (a % 10)) / 10;         // 배열의 1 번째에는 십의 자릿수를 담는다
-    g_num[1] = ((g % 100) - (g % 10)) / 10;
-
-    a_num[2] = a % 10;                              // 배열의 2 번째에는 일의 자릿수를 담는다
-    g_num[2] = g % 10;
+    g_num[0] = g / 100;                             // 추측값(guess)의 1의 자리 수를 대입
+    g_num[1] = ((g % 100) - (g % 10)) / 10;         // 추측값(guess)의 10의 자리 수를 대입
+    g_num[2] = g % 10;                              // 추측값(guess)의 100의 자리 수를 대입
 
     for (int i = 0; i < 3; i++) {
         // 만일 각각 자릿수 위치의 숫자(값)가 서로 같다면?
-        if (a_num[i] == g_num[i]) {
+        if (a[i] == g_num[i]) {
             // strike!
             count++;
         }
@@ -45,23 +41,18 @@ int strike(int a, int g) {                          // a : answer(정답), g : g
 
 
 // Ball을 기록하는 함수
-int ball(int a, int g) {
-    int a_num[3], g_num[3];
+int ball(int* a, int g) {
+    int g_num[3];
     int count = 0;
 
-    a_num[0] = a / 100;
     g_num[0] = g / 100;
-
-    a_num[1] = ((a % 100) - (a % 10)) / 10;
     g_num[1] = ((g % 100) - (g % 10)) / 10;
-
-    a_num[2] = a % 10;
     g_num[2] = g % 10;
 
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {               // answer의 각 자릿수 하나마다 guess의 세 자릿수를 하나씩 비교
             // 만일 같은 숫자가 존재한다면?
-            if (a_num[i] == g_num[j]) {
+            if (a[i] == g_num[j]) {
                 // 그러나 자릿수까지 같으면 ball이 아니라 strike 이므로 제외
                 if (i != j) {
                     // ball!
@@ -78,8 +69,10 @@ int ball(int a, int g) {
 
 // 게임의 흐름을 맡는 함수
 void gameLoop() {
-    int answer, guess;
-    answer = enterAnswer();                         // 정답(answer)을 입력받는 함수
+    int answer[3], guess;                           // 정답(answer)은 세 자리 숫자이고 맨 앞에 0이 올 수 있으므로 3칸 배열로 선언
+    generateAnswer(answer);                         // 정답(answer)을 랜덤으로 입력받는 함수
+
+    printAnswer(answer);                            // 정답(answer)을 출력하는 함수
 
     while (true) {
         guess = enterGuess();                       // 추측값(guess)을 입력받는 함수

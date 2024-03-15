@@ -4,12 +4,13 @@
 
 
 // ProtoTypes
-int enterAnswer();
+void generateAnswer(int* a);
+void printAnswer(int* a);
 int enterGuess();
 void gameLoop();
-int strike(int a, int g);
-int ball(int a, int g);
-void showResult(int a, int g);
+int strike(int* a, int g);
+int ball(int* a, int g);
+void showResult(int* a, int g);
 void congratulation();
 
 
