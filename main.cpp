@@ -5,7 +5,6 @@
 
 // ProtoTypes
 void generateAnswer(int* a);
-void printAnswer(int* a);
 int enterGuess();
 void gameLoop();
 int strike(int* a, int g);

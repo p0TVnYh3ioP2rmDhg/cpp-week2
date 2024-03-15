@@ -8,7 +8,6 @@
 
 // Prototypes
 void generateAnswer(int* a);
-void printAnswer(int* a);
 int enterGuess();
 void gameLoop();
 int strike(int* a, int g);
@@ -71,8 +70,6 @@ int ball(int* a, int g) {
 void gameLoop() {
     int answer[3], guess;                           // 정답(answer)은 세 자리 숫자이고 맨 앞에 0이 올 수 있으므로 3칸 배열로 선언
     generateAnswer(answer);                         // 정답(answer)을 랜덤으로 입력받는 함수
-
-    printAnswer(answer);                            // 정답(answer)을 출력하는 함수
 
     while (true) {
         guess = enterGuess();                       // 추측값(guess)을 입력받는 함수

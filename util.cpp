@@ -11,7 +11,6 @@
 
 // Prototypes
 void generateAnswer(int* a);
-void printAnswer(int* a);
 int enterGuess();
 void gameLoop();
 int strike(int* a, int g);
@@ -47,13 +46,6 @@ void generateAnswer(int* a) {									// 정답 세 자리 숫자는 100의 자�
             }
         }
 	}
-}
-
-
-
-// 정답을 출력하는 함수
-void printAnswer(int* a) {
-	std::cout << "Answer is " << a[0] << a[1] << a[2] << std::endl;
 }
 
 
