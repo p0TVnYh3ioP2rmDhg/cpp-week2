@@ -23,8 +23,6 @@ void congratulation();
 
 // 정답(answer)을 랜덤으로 입력받는 함수
 void generateAnswer(int* a) {									// 정답 세 자리 숫자는 100의 자리에 0이 올 수도 있으므로 '배열' 포인터로 받음
-    int temp = NULL;                                            // 중복되는 수를 검사하기 위해 추가한 정수형 자료 temp
-
 	srand(time(NULL));											// 랜덤 수를 생성하기 위한 난수 초기화
 
 	for (int i = 0; i < 3; i++) {
