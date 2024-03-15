@@ -6,11 +6,13 @@
 // ProtoTypes
 void generateAnswer(int* a);
 int enterGuess();
-void gameLoop();
+int gameLoop();
 int strike(int* a, int g);
 int ball(int* a, int g);
 void showResult(int* a, int g);
 void congratulation();
+void youLose();
+void printChance(int c);
 
 
 

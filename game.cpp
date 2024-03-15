@@ -9,11 +9,13 @@
 // Prototypes
 void generateAnswer(int* a);
 int enterGuess();
-void gameLoop();
+int gameLoop();
 int strike(int* a, int g);
 int ball(int* a, int g);
 void showResult(int* a, int g);
 void congratulation();
+void youLose();
+void printChance(int c);
 
 
 
@@ -67,18 +69,24 @@ int ball(int* a, int g) {
 
 
 // 게임의 흐름을 맡는 함수
-void gameLoop() {
+int gameLoop() {
     int answer[3], guess;                           // 정답(answer)은 세 자리 숫자이고 맨 앞에 0이 올 수 있으므로 3칸 배열로 선언
+    int chance = 5;                                 // 정답을 맞출 수 있는 기회 5번으로 설정
     generateAnswer(answer);                         // 정답(answer)을 랜덤으로 입력받는 함수
 
-    while (true) {
+    while (chance) {                                // 만약 기회(chance)가 0이 되면 반복문을 탈출하며 실패 메시지 출력
+        printChance(chance);                        // 매 턴마다 남은 찬스 개수를 출력함
         guess = enterGuess();                       // 추측값(guess)을 입력받는 함수
 
         if (strike(answer, guess) == 3) {           // strike가 3개라면? (즉, 정답을 맞추었다면?)
             congratulation();                       // ㅊㅊ
-            break;                                  // 이후 반복문 및 함수 탈출 후 게임 종료(return 0;)
+            return 0;                               // 이후 gameLoop 함수 탈출 및 종료
         }
 
-        showResult(answer, guess);                  // 정답을 맞히지 않은 경우, 진행상황을 알려준다
+        showResult(answer, guess);                  // 정답을 맞히지 못은 경우, 진행상황을 알려준다
+        chance--;                                   // 정답을 맞히지 못한 경우, 찬스 횟수를 1회 소모
     }
+
+    youLose();                                      // 정해진 횟수 내에 정답을 맞히지 못한 경우, 패배 메시지 출력 및 게임 종료
+    return 0;
 }

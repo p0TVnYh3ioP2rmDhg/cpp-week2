@@ -12,11 +12,13 @@
 // Prototypes
 void generateAnswer(int* a);
 int enterGuess();
-void gameLoop();
+int gameLoop();
 int strike(int* a, int g);
 int ball(int* a, int g);
 void showResult(int* a, int g);
 void congratulation();
+void youLose();
+void printChance(int c);
 
 
 
@@ -73,4 +75,18 @@ void showResult(int* a, int g) {
 // 게임 승리 시 승리 메시지를 출력하는 함수
 void congratulation() {
 	std::cout << "You Win!" << std::endl;
+}
+
+
+
+// 게임 패배 시 패배 메시지를 출력하는 함수
+void youLose() {
+    std::cout << "You lose!" << std::endl;
+}
+
+
+
+// 찬스 개수를 출력하는 함수
+void printChance(int c) {
+    std::cout << c << " chances left." << std::endl;
 }
